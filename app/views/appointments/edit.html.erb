@@ -1,0 +1,17 @@
+<legend>Edit Appointments</legend>
+
+<%= form_for :appointments, url: session_appointment_path, method: :patch do |f| %>
+
+  <p>
+    <%= f.text_area :summary, placeholder: 'Summary', class: "form-control"%>
+  </p>
+
+Select booking time
+  <p>
+    <%= f.datetime_select :time%>
+  </p>
+
+  <p>
+    <%= f.submit 'Edit', class: "btn btn-success" %>
+  </p>
+<% end %>

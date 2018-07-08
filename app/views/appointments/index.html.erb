@@ -1,0 +1,41 @@
+<legend>My Appointments</legend>
+
+<p>
+Appointments booked by me:
+<ul>
+  <% @appointments_booked.zip(@users_booked).each do |appointment, user| %>
+
+      <li class='appointment'>
+        First Name: <%= user.first_name %><br>
+        Last Name: <%= user.last_name %><br>
+        Email: <%= user.email %><br>
+        Summary: <%= appointment[:summary] %><br>
+        <!-- better way to display local time needed -->
+        Time: <%= appointment[:time] %><br>
+          <%= link_to('Edit', edit_session_appointment_path(appointment), class: "btn btn-warning btn-small") %>
+          <%= link_to('Delete', session_appointment_path(appointment), method: :delete, class: "btn btn-danger btn-small") %>
+
+      </li>
+
+  <% end %>
+</ul>
+</p>
+
+<p>
+Appointments requested for me:
+<ul>
+  <% @appointments_requested.zip(@users_requested).each do |appointment, user| %>
+
+      <li>
+        First Name: <%= user.first_name %><br>
+        Last Name: <%= user.last_name %><br>
+        Email: <%= user.email %><br>
+        Summary: <%= appointment[:summary] %><br>
+        <!-- better way to display local time needed -->
+        Time: <%= appointment[:time] %><br>
+          <%= link_to('Delete', session_appointment_path(appointment), method: :delete, class: "btn btn-danger btn-small") %>
+      </li>
+
+  <% end %>
+</ul>
+</p>

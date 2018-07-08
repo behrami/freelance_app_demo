@@ -1,0 +1,5 @@
+<legend>Sign In</legend>
+
+<%= render partial: "sign_in_form" %>
+<%= link_to "Don't have an account?", new_user_path %>
+<div class='flash'><%= flash[:notice] %></div>

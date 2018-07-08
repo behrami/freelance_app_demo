@@ -1,0 +1,14 @@
+<legend>Countries</legend>
+
+<ul>
+  <% @countries.each do |country| %>
+  <li>
+    <% if @profession_id %>
+      Country name: <%= link_to(country[:name], profession_country_provinces_path(@profession_id, country)) %>
+    <% else %>
+      Country name: <%= link_to(country[:name], country_provinces_path(country)) %>
+    <% end %>
+
+  </li>
+  <% end %>
+</ul>

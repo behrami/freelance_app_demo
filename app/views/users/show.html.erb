@@ -1,0 +1,12 @@
+<div class = 'container'>
+  <%= image_tag(@user[:picture]) %><br>
+  First name: <%= @user[:first_name] %><br>
+  Last name: <%= @user[:last_name] %><br>
+  Email: <%= @user[:email] %><br>
+  Phone Number: <%= @user[:phone_number] %><br>
+  About me: <%= @user[:summary] %><br>
+
+  <% if current_user %>
+    <%= link_to('Book now', new_user_appointment_path(@user[:id]), class: "btn btn-success") %>
+  <% end %>
+</div>

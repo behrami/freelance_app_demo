@@ -1,0 +1,15 @@
+<legend>Professions</legend>
+
+<ul>
+  <% @professions.each do |profession| %>
+    <% if profession[:name] != 'None' && @city_id%>
+      <li>
+        Profession name: <%= link_to(profession[:name], city_profession_users_path(@city_id, profession)) %>
+      </li>
+    <% elsif profession[:name] != 'None' %>
+      <li>
+        Profession name: <%= link_to(profession[:name], profession_countries_path(profession)) %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

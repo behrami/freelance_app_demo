@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OakTable</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">
+        <%= image_tag("oaktable.png", width: "30", height: "30", class: "d-inline-block align-top") %>
+        <!-- <img src="oaktable.png" width="30" height="30" class="d-inline-block align-top" alt=""> -->
+        OakTable
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="<%= professions_path%>">Professionals</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= countries_path%>">Locations</a>
+          </li>
+          <% if current_user%>
+            <a class="nav-link" href="<%= session_appointments_path%>">My Appointments</a>
+            <a class="nav-link" href="<%= edit_user_path%>">Edit Profile</a>
+          <% end %>
+        </ul>
+
+        <div class="my-2 my-lg-0" id='signInOutUp'>
+          <% if current_user%>
+            <%= link_to 'Sign Out', session_path, method: :delete, class: "btn btn-outline-danger" %>
+          <% else %>
+            <%= link_to 'Sign Up', new_user_path, class: "btn btn-outline-warning", id: 'signup', "data-toggle": "modal", "data-target": "#signUpModalCenter" %></div>
+            <%= link_to 'Sign In', new_session_path, class: "btn btn-outline-success", id: 'signin', "data-toggle": "modal", "data-target": "#signInModalCenter" %></div>
+
+            <!-- Signin Modal -->
+            <div class="modal fade" id="signInModalCenter" tabindex="-1" role="dialog" aria-labelledby="signInModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="signInModalLongTitle">Sign In</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <%= render partial: "sessions/sign_in_form" %>
+                  </div>
+                  <div class="modal-footer">
+                    <div id='signInModalFlash'></div>
+                    <%= link_to "Don't have an account?", new_user_path %>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Signup Modal -->
+            <div class="modal fade" id="signUpModalCenter" tabindex="-1" role="dialog" aria-labelledby="signUpModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="signUpModalLongTitle">Sign Up</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <!-- to prevent signup for from being populated by show page of user -->
+                    <% if @user %>
+                      <% @user= nil %>
+                    <% end %>
+                    <%= render partial: "users/sign_up_form" %>
+                  </div>
+                  <div class="modal-footer">
+                    <div id='signUpModalFlash'></div>
+                    <%= link_to "Already have an account?", new_session_path %>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+    <%= yield %>
+
+  <footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 All Rights Reserved.
+
+      <p>Brought to you by:<a href="https://www.linkedin.com/in/behram-i-936b823b/" target="_blank"> Behram Irani</a> &amp; <a href="https://www.linkedin.com/in/shashike-jayatunge/" target="_blank">Shashike Jayatunge</a> </p>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+  </body>
+</html>

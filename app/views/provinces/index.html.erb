@@ -1,0 +1,26 @@
+<legend>Provinces</legend>
+
+<ul>
+  <% @provinces.each do |province| %>
+  <li>
+    <% if @profession_id %>
+      Province name: <%= link_to(province[:name], profession_province_cities_path(@profession_id, province)) %>
+    <% else %>
+      Province name: <%= link_to(province[:name], province_cities_path(province)) %>
+    <% end %>
+  </li>
+  <% end %>
+</ul>
+
+<% if @profession_id %>
+  <legend>List of <%= Profession.find_by(id: @profession_id).name%>s</legend>
+  
+  <ul>
+    <% @users_array.each do |user| %>
+    <li>
+      First name: <%= user[:first_name] %><br>
+      Last name: <%= user[:last_name] %>
+    </li>
+    <% end %>
+  </ul>
+<% end %>

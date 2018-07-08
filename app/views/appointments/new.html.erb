@@ -1,0 +1,17 @@
+<legend>Book Appointment</legend>
+
+<%= form_for :appointments, url: user_appointments_path do |f| %>
+
+  <p>
+    <%= f.text_area :summary, placeholder: 'Summary', class: "form-control"%>
+  </p>
+
+Select booking time
+  <p>
+    <%= f.datetime_select :time%>
+  </p>
+
+  <p>
+    <%= f.submit 'Book', class: "btn btn-success" %>
+  </p>
+<% end %>

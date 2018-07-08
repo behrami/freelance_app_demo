@@ -1,0 +1,15 @@
+<%= form_for :session, url: session_path, html: {id: 'signInForm'} do |f| %>
+
+  <p>
+    <%= f.email_field :email, placeholder: 'Email Address', class: "form-control" %>
+  </p>
+
+  <p>
+    <%= f.password_field :password, placeholder: 'Password', class: "form-control" %>
+  </p>
+
+  <div>
+    <%= f.submit "Sign In", class: "btn btn-primary", id: "signInSubmit" %>
+  </div>
+
+<% end %>

@@ -1,0 +1,14 @@
+<div class = 'container'>
+  <ul class="list-unstyled">
+    <% @users.each do |user| %>
+    <li class="media">
+    	<%= image_tag(user[:picture], class: "mr-3") %><br>
+      <div class="media-body">
+        <h5 class="mt-0 mb-1"><%= "#{user[:first_name]} #{user[:last_name]}" %></h5>
+        Email: <%= user[:email] %><br>
+        <%= link_to('View', profession_city_user_path(@city_id,@profession_id,user))%>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>

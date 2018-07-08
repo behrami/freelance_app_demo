@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# one:
+#   first_name: MyString
+#   lasat_name: MyString
+#   email: MyString
+#   profession_id: MyString
+
+# two:
+#   first_name: MyString
+#   lasat_name: MyString
+#   email: MyString
+#   profession_id: MyString

@@ -1,0 +1,50 @@
+<legend>Edit Profile</legend>
+
+<%= form_for current_user, url: user_path, method: :patch, html: {id: 'signUpEditForm'} do |f| %>
+
+  <p>
+    <%= f.text_field :first_name, placeholder: 'First Name', class: "form-control"%>
+  </p>
+
+  <p>
+    <%= f.text_field :last_name, placeholder: 'Last Name', class: "form-control" %>
+  </p>
+
+  <p>
+    <%= f.email_field :email, placeholder: 'Email', class: "form-control" %>
+  </p>
+
+  <p>
+    <%= f.text_field :phone_number, placeholder: 'Phone Number', class: "form-control" %>
+  </p>
+
+  <p>
+    <%= f.text_area :summary, placeholder: 'Tell me about yourself', class: "form-control" %>
+  </p>
+
+  <p>
+    <%= f.text_field :picture, placeholder: 'Enter Link to 100x100 Picture', class: "form-control" %>
+  </p>
+
+  <p>
+    <%= f.password_field :password, placeholder: 'Password', class: "form-control" %>
+  </p>
+
+  <p>
+    <%= f.password_field :password_confirmation, placeholder: 'Confirm Password', class: "form-control" %>
+  </p>
+
+  <p class="form-group">
+    <label>Select Your Profession: </label>
+    <%= f.collection_select :profession_id, Profession.order(:name), :id, :name, {include_blank: true}, {class: "custom-select"} %>
+  </p>
+
+  <p class="form-group">
+    <label>Select Your City: </label>
+    <%= f.collection_select :city_id, City.order(:name),:id,:name, {include_blank: true}, {class: "form-control"} %>
+  </p>
+
+  <p>
+    <%= f.submit 'Edit', class: "btn btn-primary", id: "EditSubmit" %>
+  </p>
+<% end %>
